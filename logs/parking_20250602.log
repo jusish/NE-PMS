@@ -1,0 +1,146 @@
+2025-06-02 11:28:52,899 - ParkingSystem - INFO - Entry system started
+2025-06-02 11:29:16,062 - ParkingSystem - INFO - ENTRY - Plate: RAH971B, ID: 1
+2025-06-02 11:29:53,081 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 11:29:55,562 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 11:29:58,102 - ParkingSystem - INFO - Entry system cleaned up
+2025-06-02 11:31:15,146 - ParkingSystem - INFO - Exit system started
+2025-06-02 11:31:30,651 - ParkingSystem - INFO - EXIT - Plate: RAH971B, Status: DENIED
+2025-06-02 11:31:35,359 - ParkingSystem - INFO - Exit system cleaned up
+2025-06-02 12:21:44,925 - ParkingSystem - INFO - Entry system started
+2025-06-02 12:22:02,262 - ParkingSystem - INFO - ENTRY - Plate: RAH971B, ID: 1
+2025-06-02 12:22:31,022 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:23:03,639 - ParkingSystem - INFO - Entry system cleaned up
+2025-06-02 12:37:20,019 - ParkingSystem - INFO - Entry system started
+2025-06-02 12:37:49,956 - ParkingSystem - INFO - ENTRY - Plate: RAH977B, ID: 2
+2025-06-02 12:38:06,537 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:07,060 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:07,499 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:08,345 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:08,746 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:09,356 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:10,424 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:23,646 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:24,507 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:25,177 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:25,847 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:26,823 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:27,854 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:58,383 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:38:59,476 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:39:00,002 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:39:00,927 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:39:01,966 - ParkingSystem - INFO - Entry system cleaned up
+2025-06-02 12:40:55,369 - ParkingSystem - INFO - Entry system started
+2025-06-02 12:41:22,012 - ParkingSystem - INFO - ENTRY - Plate: RAB707H, ID: 3
+2025-06-02 12:41:37,579 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:38,107 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:38,568 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:39,228 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:39,613 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:40,134 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:40,918 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:41,823 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:42,712 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:43,479 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:44,459 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:45,891 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:46,701 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:47,369 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:41:48,149 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 12:42:21,710 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:42:26,898 - ParkingSystem - INFO - Entry system cleaned up
+2025-06-02 12:56:11,056 - ParkingSystem - INFO - Entry system started
+2025-06-02 12:56:37,702 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:56:47,941 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:56:48,502 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:56:49,327 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:56:50,152 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:56:50,659 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:56:51,196 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:56:53,808 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:56:54,320 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:56:55,546 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAH971B
+2025-06-02 12:56:57,428 - ParkingSystem - INFO - Entry system cleaned up
+2025-06-02 12:59:56,956 - ParkingSystem - INFO - Entry system started
+2025-06-02 13:02:17,616 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:02:18,403 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:02:19,831 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:02:20,335 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:02:20,767 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:02:21,236 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:02:21,687 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:04:23,694 - ParkingSystem - INFO - Entry system stopped by user
+2025-06-02 13:04:23,714 - ParkingSystem - INFO - Entry system cleaned up
+2025-06-02 13:05:10,135 - ParkingSystem - INFO - Entry system started
+2025-06-02 13:05:26,261 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:05:27,443 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:05:27,984 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:05:30,324 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:05:31,286 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:05:31,709 - ParkingSystem - INFO - Entry system cleaned up
+2025-06-02 13:09:22,362 - ParkingSystem - INFO - Entry system started
+2025-06-02 13:09:35,429 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:36,598 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:36,995 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:37,429 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:37,837 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:38,270 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:38,691 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:39,137 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:39,678 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:40,355 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:40,765 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:41,241 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:41,623 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:42,019 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:42,419 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:42,886 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:43,337 - ParkingSystem - INFO - Denied entry - unpaid record exists for RAB707H
+2025-06-02 13:09:43,460 - ParkingSystem - INFO - Entry system cleaned up
+2025-06-02 13:49:21,801 - ParkingSystem - ERROR - Arduino not connected for payment system
+2025-06-02 13:49:59,602 - ParkingSystem - INFO - Payment system started
+2025-06-02 13:50:07,963 - ParkingSystem - INFO - PAYMENT - Plate: RAH971B, Amount: 70000, Status: SUCCESS
+2025-06-02 13:50:11,369 - ParkingSystem - INFO - PAYMENT - Plate: RAH971B, Amount: 69555, Status: FAILED
+2025-06-02 13:50:55,892 - ParkingSystem - INFO - Payment system stopped by user
+2025-06-02 13:51:09,463 - ParkingSystem - INFO - Exit system started
+2025-06-02 13:51:11,274 - ParkingSystem - INFO - Exit system cleaned up
+2025-06-02 13:51:20,936 - ParkingSystem - INFO - Exit system started
+2025-06-02 13:51:41,199 - ParkingSystem - INFO - EXIT - Plate: RAH971B, Status: SUCCESS
+2025-06-02 13:52:01,234 - ParkingSystem - INFO - Exit system cleaned up
+2025-06-02 14:54:40,397 - ParkingSystem - INFO - Exit system started
+2025-06-02 14:55:08,214 - ParkingSystem - INFO - EXIT - Plate: RAH971B, Status: DENIED
+2025-06-02 14:55:08,649 - ParkingSystem - INFO - EXIT - Plate: RAH971B, Status: DENIED
+2025-06-02 14:55:09,784 - ParkingSystem - INFO - EXIT - Plate: RAH971B, Status: DENIED
+2025-06-02 14:55:10,746 - ParkingSystem - INFO - EXIT - Plate: RAH971B, Status: DENIED
+2025-06-02 14:55:11,183 - ParkingSystem - INFO - EXIT - Plate: RAH971B, Status: DENIED
+2025-06-02 14:55:11,898 - ParkingSystem - INFO - EXIT - Plate: RAH971B, Status: DENIED
+2025-06-02 14:55:12,488 - ParkingSystem - INFO - EXIT - Plate: RAH971B, Status: DENIED
+2025-06-02 14:55:14,918 - ParkingSystem - INFO - EXIT - Plate: RAH971B, Status: DENIED
+2025-06-02 14:55:15,258 - ParkingSystem - INFO - Exit system cleaned up
+2025-06-02 14:57:11,058 - ParkingSystem - INFO - Exit system started
+2025-06-02 14:57:23,504 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:23,965 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:24,945 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:25,366 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:25,757 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:26,443 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:26,853 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:27,430 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:27,814 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:28,252 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:28,637 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:29,182 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:29,577 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:30,526 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:31,476 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:33,187 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:35,983 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:37,445 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:38,435 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:38,844 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:39,260 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:40,053 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:40,459 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:41,175 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:41,847 - ParkingSystem - INFO - EXIT - Plate: RAB707H, Status: DENIED
+2025-06-02 14:57:42,014 - ParkingSystem - INFO - Exit system cleaned up

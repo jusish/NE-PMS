@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Management System - Future Control</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-glow: #00f5ff;
+            --secondary-glow: #ff00aa;
+            --accent-glow: #00ff88;
+            --danger-glow: #ff4444;
+            --warning-glow: #ffaa00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.2);
+            border-color: rgba(0, 245, 255, 0.3);
+        }
+
+        /* Neon Effects */
+        .neon-border {
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, rgba(255, 0, 170, 0.1) 100%);
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
+            border-radius: inherit;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: xor;
+            -webkit-mask-composite: xor;
+        }
+
+        /* Animated Background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            background-image:
+                radial-gradient(circle at 20% 80%, var(--primary-glow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--secondary-glow) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, var(--accent-glow) 0%, transparent 50%);
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Pulse Animation */
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 5px var(--accent-glow), 0 0 10px var(--accent-glow), 0 0 15px var(--accent-glow);
+            }
+            50% {
+                box-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--primary-glow), var(--secondary-glow));
+            border-radius: 10px;
+        }
+
+        /* Holographic Text */
+        .holo-text {
+            background: linear-gradient(45deg, var(--primary-glow), var(--secondary-glow), var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: holoShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes holoShimmer {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(180deg); }
+        }
+
+        /* Floating Elements */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Matrix-style Data Stream */
+        .data-stream {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--primary-glow), transparent);
+            animation: dataFlow 2s linear infinite;
+        }
+
+        @keyframes dataFlow {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* Chart Container Enhancements */
+        .chart-glow {
+            filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.3));
+        }
+
+        /* Status Indicators */
+        .status-online {
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            animation: statusPulse 2s infinite;
+        }
+
+        .status-warning {
+            background: radial-gradient(circle, var(--warning-glow) 0%, transparent 70%);
+            animation: statusPulse 2s infinite;
+        }
+
+        .status-error {
+            background: radial-gradient(circle, var(--danger-glow) 0%, transparent 70%);
+            animation: statusPulse 2s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        /* Responsive Grid */
+        .futuristic-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        /* Button Enhancements */
+        .cyber-button {
+            background: linear-gradient(45deg, rgba(0, 245, 255, 0.1), rgba(255, 0, 170, 0.1));
+            border: 1px solid var(--primary-glow);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-button:hover {
+            background: linear-gradient(45deg, rgba(0, 245, 255, 0.2), rgba(255, 0, 170, 0.2));
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .cyber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cyber-button:hover::before {
+            left: 100%;
+        }
+
+        /* Modal Enhancements */
+        .modal-backdrop {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Loading Animation */
+        .loading-ring {
+            border: 3px solid rgba(0, 245, 255, 0.3);
+            border-top: 3px solid var(--primary-glow);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Tab Enhancement */
+        .cyber-tab {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .cyber-tab.active {
+            background: linear-gradient(45deg, rgba(0, 245, 255, 0.2), rgba(255, 0, 170, 0.2));
+            border-color: var(--primary-glow);
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+
+    <!-- Header -->
+    <header class="relative z-10">
+        <div class="glass-card mx-4 mt-4 p-6 neon-border">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <i class="fas fa-car text-4xl holo-text floating"></i>
+                        <div class="data-stream"></div>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white orbitron">PARKING COMMAND CENTER</h1>
+                        <p class="text-cyan-400 text-sm">Real-time Vehicle Management System</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 rounded-full status-online"></div>
+                        <span class="text-green-400 text-sm orbitron">SYSTEM ONLINE</span>
+                    </div>
+                    <div class="text-right">
+                        <div id="current-time" class="text-white text-lg orbitron"></div>
+                        <div id="current-date" class="text-cyan-400 text-sm"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-6">
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="glass-card p-6 floating">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-cyan-400 text-sm font-medium mb-2">TODAY'S ENTRIES</p>
+                        <p id="total-today" class="text-4xl font-bold text-white orbitron">0</p>
+                        <p class="text-green-400 text-xs mt-1">+12% from yesterday</p>
+                    </div>
+                    <div class="relative">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                            <i class="fas fa-car-side text-cyan-400 text-2xl"></i>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full pulse-glow"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 floating" style="animation-delay: 0.2s;">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-orange-400 text-sm font-medium mb-2">CURRENTLY PARKED</p>
+                        <p id="currently-parked" class="text-4xl font-bold text-white orbitron">0</p>
+                        <p class="text-orange-400 text-xs mt-1">Active sessions</p>
+                    </div>
+                    <div class="relative">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-orange-500/20 to-red-500/20 flex items-center justify-center">
+                            <i class="fas fa-parking text-orange-400 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 floating" style="animation-delay: 0.4s;">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-green-400 text-sm font-medium mb-2">TODAY'S REVENUE</p>
+                        <p id="revenue-today" class="text-4xl font-bold text-white orbitron">0 FRW</p>
+                        <p class="text-green-400 text-xs mt-1">Target: 100,000 FRW</p>
+                    </div>
+                    <div class="relative">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 flex items-center justify-center">
+                            <i class="fas fa-coins text-green-400 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 floating" style="animation-delay: 0.6s;">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-purple-400 text-sm font-medium mb-2">AVG DURATION</p>
+                        <p id="avg-duration" class="text-4xl font-bold text-white orbitron">0m</p>
+                        <p class="text-purple-400 text-xs mt-1">Per vehicle</p>
+                    </div>
+                    <div class="relative">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                            <i class="fas fa-clock text-purple-400 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="glass-card p-2 mb-6">
+            <div class="flex space-x-2">
+                <button class="cyber-tab active px-6 py-3 rounded-lg transition-all" onclick="switchTab('analytics')" id="tab-analytics">
+                    <i class="fas fa-chart-line mr-2"></i>Analytics
+                </button>
+                <button class="cyber-tab px-6 py-3 rounded-lg transition-all" onclick="switchTab('records')" id="tab-records">
+                    <i class="fas fa-database mr-2"></i>Records
+                </button>
+                <button class="cyber-tab px-6 py-3 rounded-lg transition-all" onclick="switchTab('logs')" id="tab-logs">
+                    <i class="fas fa-terminal mr-2"></i>System Logs
+                </button>
+                <button class="cyber-tab px-6 py-3 rounded-lg transition-all" onclick="switchTab('search')" id="tab-search">
+                    <i class="fas fa-search mr-2"></i>Advanced Search
+                </button>
+            </div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div id="content-analytics" class="tab-content">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="glass-card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-white orbitron">HOURLY ENTRIES</h3>
+                        <div class="flex space-x-2">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                            <div class="w-2 h-2 bg-cyan-400/50 rounded-full"></div>
+                            <div class="w-2 h-2 bg-cyan-400/25 rounded-full"></div>
+                        </div>
+                    </div>
+                    <div class="chart-container chart-glow" style="height: 300px;">
+                        <canvas id="entriesChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-white orbitron">REVENUE STREAM</h3>
+                        <div class="flex space-x-2">
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <div class="w-2 h-2 bg-green-400/50 rounded-full"></div>
+                            <div class="w-2 h-2 bg-green-400/25 rounded-full"></div>
+                        </div>
+                    </div>
+                    <div class="chart-container chart-glow" style="height: 300px;">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activities -->
+            <div class="glass-card p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-semibold text-white orbitron">LIVE ACTIVITY FEED</h3>
+                    <div class="flex items-center space-x-3">
+                        <div class="loading-ring"></div>
+                        <span class="text-cyan-400 text-sm">Live monitoring</span>
+                    </div>
+                </div>
+                <div id="recent-activities" class="space-y-3 max-h-96 overflow-y-auto"></div>
+            </div>
+        </div>
+
+        <!-- Records Tab -->
+        <div id="content-records" class="tab-content hidden">
+            <div class="glass-card p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-semibold text-white orbitron">PARKING RECORDS DATABASE</h3>
+                    <div class="flex space-x-4">
+                        <select id="records-per-page" class="bg-gray-800 text-white px-4 py-2 rounded-lg border border-cyan-400/30">
+                            <option value="20">20 per page</option>
+                            <option value="50">50 per page</option>
+                            <option value="100">100 per page</option>
+                        </select>
+                        <button onclick="exportRecords()" class="cyber-button">
+                            <i class="fas fa-download mr-2"></i>Export
+                        </button>
+                    </div>
+                </div>
+                <div id="records-table" class="overflow-x-auto"></div>
+                <div id="pagination" class="flex justify-center mt-6 space-x-2"></div>
+            </div>
+        </div>
+
+        <!-- Logs Tab -->
+        <div id="content-logs" class="tab-content hidden">
+            <div class="glass-card p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-semibold text-white orbitron">SYSTEM DIAGNOSTICS</h3>
+                    <div class="flex space-x-4">
+                        <select id="log-lines" class="bg-gray-800 text-white px-4 py-2 rounded-lg border border-cyan-400/30">
+                            <option value="50">Last 50 lines</option>
+                            <option value="100">Last 100 lines</option>
+                            <option value="200">Last 200 lines</option>
+                        </select>
+                        <button onclick="refreshLogs()" class="cyber-button">
+                            <i class="fas fa-sync-alt mr-2"></i>Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-black/50 rounded-lg p-4 font-mono text-green-400 text-sm max-h-96 overflow-y-auto">
+                    <pre id="log-content">Loading system logs...</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Search Tab -->
+        <div id="content-search" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="glass-card p-6">
+                    <h3 class="text-xl font-semibold text-white orbitron mb-6">SEARCH PARAMETERS</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-cyan-400 text-sm mb-2">License Plate</label>
+                            <input id="search-plate" type="text" placeholder="Enter plate number"
+                                   class="w-full px-4 py-3 bg-gray-800/50 border border-cyan-400/30 rounded-lg text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-cyan-400 text-sm mb-2">Date Range</label>
+                            <input id="search-date" type="date"
+                                   class="w-full px-4 py-3 bg-gray-800/50 border border-cyan-400/30 rounded-lg text-white focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-cyan-400 text-sm mb-2">Status Filter</label>
+                            <select id="search-status" class="w-full px-4 py-3 bg-gray-800/50 border border-cyan-400/30 rounded-lg text-white focus:border-cyan-400">
+                                <option value="">All Status</option>
+                                <option value="paid">Paid</option>
+                                <option value="unpaid">Unpaid</option>
+                            </select>
+                        </div>
+                        <button onclick="searchRecords()" class="cyber-button w-full">
+                            <i class="fas fa-search mr-2"></i>Execute Search
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 glass-card p-6">
+                    <h3 class="text-xl font-semibold text-white orbitron mb-6">SEARCH RESULTS</h3>
+                    <div id="search-results" class="space-y-3 max-h-96 overflow-y-auto">
+                        <div class="text-center text-gray-400 py-8">
+                            <i class="fas fa-search text-4xl mb-4"></i>
+                            <p>Enter search parameters to find records</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let entriesChart, revenueChart;
+        let currentPage = 1;
+        let currentTab = 'analytics';
+
+        // WebSocket connection
+        const ws = new WebSocket(`ws://${window.location.host}/ws`);
+
+        ws.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            if (data.type === 'stats_update') {
+                updateStats(data.data);
+                if (currentTab === 'analytics') {
+                    updateCharts();
+                    loadRecentActivities();
+                }
+            }
+        };
+
+        ws.onopen = function() {
+            console.log('WebSocket connected');
+            showNotification('System connected', 'success');
+        };
+
+        ws.onclose = function() {
+            console.log('WebSocket disconnected');
+            showNotification('Connection lost - attempting to reconnect...', 'warning');
+            setTimeout(() => location.reload(), 5000);
+        };
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.cyber-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+
+            // Show/hide content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+
+            currentTab = tabName;
+
+            // Load tab-specific data
+            switch(tabName) {
+                case 'analytics':
+                    updateCharts();
+                    loadRecentActivities();
+                    break;
+                case 'records':
+                    loadParkingRecords();
+                    break;
+                case 'logs':
+                    loadLogs();
+                    break;
+            }
+        }
+
+        // Initialize charts with futuristic styling
+        function initCharts() {
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#ffffff',
+                            font: {
+                                family: 'Orbitron',
+                                size: 12
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#00f5ff' },
+                        grid: { color: 'rgba(0, 245, 255, 0.1)' }
+                    },
+                    y: {
+                        ticks: { color: '#00f5ff' },
+                        grid: { color: 'rgba(0, 245, 255, 0.1)' }
+                    }
+                }
+            };
+
+            // Entries Chart
+            const ctx1 = document.getElementById('entriesChart').getContext('2d');
+            entriesChart = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+                    datasets: [{
+                        label: 'Entries',
+                        data: new Array(24).fill(0),
+                        borderColor: '#00f5ff',
+                        backgroundColor: 'rgba(0, 245, 255, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#00f5ff',
+                        pointBorderColor: '#ffffff',
+                        pointHoverRadius: 8,
+                        pointHoverBackgroundColor: '#ff00aa'
+                    }]
+                },
+                options: commonOptions
+            });
+
+            // Revenue Chart
+            const ctx2 = document.getElementById('revenueChart').getContext('2d');
+            revenueChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+                    datasets: [{
+                        label: 'Revenue (FRW)',
+                        data: new Array(24).fill(0),
+                        backgroundColor: 'rgba(0, 255, 136, 0.8)',
+                        borderColor: '#00ff88',
+                        borderWidth: 2,
+                        borderRadius: 4
+                    }]
+                },
+                options: commonOptions
+            });
+        }
+
+        function updateStats(stats) {
+            // Animate number changes
+            animateNumber('total-today', stats.total_today);
+            animateNumber('currently-parked', stats.currently_parked);
+            document.getElementById('revenue-today').textContent = `${stats.revenue_today.toLocaleString()} FRW`;
+            document.getElementById('avg-duration').textContent = `${stats.avg_duration}m`;
+        }
+
+        function animateNumber(elementId, targetValue) {
+            const element = document.getElementById(elementId);
+            const currentValue = parseInt(element.textContent) || 0;
+            const increment = (targetValue - currentValue) / 20;
+            let current = currentValue;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if ((increment > 0 && current >= targetValue) || (increment < 0 && current <= targetValue)) {
+                    current = targetValue;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.round(current);
+            }, 50);
+        }
+
+        function updateCharts() {
+            fetch('/api/hourly-data')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const entries = new Array(24).fill(0);
+                    const revenue = new Array(24).fill(0);
+
+                    Object.keys(data).forEach(hour => {
+                        const index = parseInt(hour, 10);
+                        if (index >= 0 && index < 24) {
+                            entries[index] = data[hour].entries || 0;
+                            revenue[index] = data[hour].revenue || 0;
+                        }
+                    });
+
+                    entriesChart.data.datasets[0].data = entries;
+                    revenueChart.data.datasets[0].data = revenue;
+
+                    entriesChart.update('active');
+                    revenueChart.update('active');
+                })
+                .catch(error => {
+                    console.error('Error fetching hourly data:', error);
+                    showNotification('Failed to load chart data', 'error');
+                });
+        }
+
+        function loadRecentActivities() {
+            fetch('/api/recent-activities')
+                .then(response => response.json())
+                .then(activities => {
+                    const container = document.getElementById('recent-activities');
+                    container.innerHTML = activities.map((activity, index) => `
+                        <div class="glass-card p-4 hover:scale-105 transition-all duration-300" style="animation-delay: ${index * 0.1}s;">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-3 h-3 ${activity.payment_status ? 'status-online' : 'status-warning'} rounded-full"></div>
+                                    <div>
+                                        <span class="font-bold text-white orbitron text-lg">${activity.car_plate}</span>
+                                        <div class="text-cyan-400 text-sm">
+                                            Entry: ${new Date(activity.entry_time).toLocaleString()}
+                                        </div>
+                                        ${activity.exit_time ? `<div class="text-green-400 text-sm">Exit: ${new Date(activity.exit_time).toLocaleString()}</div>` : ''}
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    ${activity.due_payment ? `
+                                        <div class="text-2xl font-bold ${activity.payment_status ? 'text-green-400' : 'text-orange-400'} orbitron">
+                                            ${activity.due_payment} FRW
+                                        </div>
+                                        <div class="text-xs ${activity.payment_status ? 'text-green-400' : 'text-orange-400'}">
+                                            ${activity.payment_status ? 'PAID' : 'PENDING'}
+                                        </div>
+                                    ` : '<div class="text-gray-400 text-sm">Calculating...</div>'}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                })
+                .catch(error => {
+                    console.error('Error loading activities:', error);
+                    showNotification('Failed to load activities', 'error');
+                });
+        }
+
+        function loadParkingRecords(page = 1) {
+            const limit = document.getElementById('records-per-page')?.value || 20;
+
+            fetch(`/api/parking-records?page=${page}&limit=${limit}`)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('records-table');
+                    container.innerHTML = `
+                        <table class="w-full text-white">
+                            <thead>
+                                <tr class="border-b border-cyan-400/30">
+                                    <th class="text-left py-3 px-4 text-cyan-400 orbitron">PLATE</th>
+                                    <th class="text-left py-3 px-4 text-cyan-400 orbitron">ENTRY TIME</th>
+                                    <th class="text-left py-3 px-4 text-cyan-400 orbitron">EXIT TIME</th>
+                                    <th class="text-left py-3 px-4 text-cyan-400 orbitron">PAYMENT</th>
+                                    <th class="text-left py-3 px-4 text-cyan-400 orbitron">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.records.map(record => `
+                                    <tr class="border-b border-gray-700/50 hover:bg-white/5 transition-colors">
+                                        <td class="py-4 px-4 font-bold">${record.car_plate}</td>
+                                        <td class="py-4 px-4">${new Date(record.entry_time).toLocaleString()}</td>
+                                        <td class="py-4 px-4">${record.exit_time ? new Date(record.exit_time).toLocaleString() : '<span class="text-orange-400">Active</span>'}</td>
+                                        <td class="py-4 px-4 font-bold">${record.due_payment ? record.due_payment + ' FRW' : '-'}</td>
+                                        <td class="py-4 px-4">
+                                            <span class="px-3 py-1 rounded-full text-xs font-bold ${record.payment_status ? 'bg-green-500/20 text-green-400' : 'bg-orange-500/20 text-orange-400'}">
+                                                ${record.payment_status ? 'PAID' : 'PENDING'}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+
+                    // Update pagination
+                    updatePagination(data.page, data.pages);
+                })
+                .catch(error => {
+                    console.error('Error loading records:', error);
+                    showNotification('Failed to load records', 'error');
+                });
+        }
+
+        function updatePagination(currentPage, totalPages) {
+            const container = document.getElementById('pagination');
+            const pages = [];
+
+            for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
+                pages.push(i);
+            }
+
+            container.innerHTML = `
+                ${currentPage > 1 ? `<button onclick="loadParkingRecords(${currentPage - 1})" class="cyber-button px-4 py-2">Previous</button>` : ''}
+                ${pages.map(page => `
+                    <button onclick="loadParkingRecords(${page})"
+                            class="cyber-button px-4 py-2 ${page === currentPage ? 'bg-cyan-400/20' : ''}">
+                        ${page}
+                    </button>
+                `).join('')}
+                ${currentPage < totalPages ? `<button onclick="loadParkingRecords(${currentPage + 1})" class="cyber-button px-4 py-2">Next</button>` : ''}
+            `;
+        }
+
+        function loadLogs() {
+            const lines = document.getElementById('log-lines')?.value || 100;
+
+            fetch(`/api/logs?lines=${lines}`)
+                .then(response => response.text())
+                .then(logs => {
+                    document.getElementById('log-content').textContent = logs || 'No logs available';
+                })
+                .catch(error => {
+                    console.error('Error loading logs:', error);
+                    document.getElementById('log-content').textContent = 'Error loading logs: ' + error.message;
+                });
+        }
+
+        function refreshLogs() {
+            showNotification('Refreshing logs...', 'info');
+            loadLogs();
+        }
+
+        function searchRecords() {
+            const plate = document.getElementById('search-plate').value;
+            const date = document.getElementById('search-date').value;
+            const status = document.getElementById('search-status').value;
+
+            const params = new URLSearchParams();
+            if (plate) params.append('plate', plate);
+            if (date) params.append('date', date);
+
+            fetch(`/api/search?${params}`)
+                .then(response => response.json())
+                .then(records => {
+                    let filteredRecords = records;
+
+                    // Apply status filter
+                    if (status === 'paid') {
+                        filteredRecords = records.filter(r => r.payment_status === 1);
+                    } else if (status === 'unpaid') {
+                        filteredRecords = records.filter(r => r.payment_status === 0);
+                    }
+
+                    const container = document.getElementById('search-results');
+
+                    if (filteredRecords.length === 0) {
+                        container.innerHTML = `
+                            <div class="text-center text-gray-400 py-8">
+                                <i class="fas fa-search-minus text-4xl mb-4"></i>
+                                <p>No records found matching your criteria</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    container.innerHTML = filteredRecords.map((record, index) => `
+                        <div class="glass-card p-4 hover:scale-105 transition-all duration-300" style="animation-delay: ${index * 0.05}s;">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-3 h-3 ${record.payment_status ? 'status-online' : 'status-warning'} rounded-full"></div>
+                                    <div>
+                                        <span class="font-bold text-white orbitron text-lg">${record.car_plate}</span>
+                                        <div class="text-cyan-400 text-sm">
+                                            ${new Date(record.entry_time).toLocaleString()}
+                                        </div>
+                                        ${record.exit_time ? `<div class="text-green-400 text-sm">Exit: ${new Date(record.exit_time).toLocaleString()}</div>` : ''}
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    ${record.due_payment ? `
+                                        <div class="text-xl font-bold ${record.payment_status ? 'text-green-400' : 'text-orange-400'} orbitron">
+                                            ${record.due_payment} FRW
+                                        </div>
+                                        <div class="text-xs ${record.payment_status ? 'text-green-400' : 'text-orange-400'}">
+                                            ${record.payment_status ? 'PAID' : 'PENDING'}
+                                        </div>
+                                    ` : '<div class="text-gray-400 text-sm">Free period</div>'}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                })
+                .catch(error => {
+                    console.error('Error searching records:', error);
+                    showNotification('Search failed', 'error');
+                });
+        }
+
+        function exportRecords() {
+            showNotification('Preparing export...', 'info');
+
+            fetch('/api/parking-records?page=1&limit=10000')
+                .then(response => response.json())
+                .then(data => {
+                    const csv = convertToCSV(data.records);
+                    downloadCSV(csv, `parking-records-${new Date().toISOString().split('T')[0]}.csv`);
+                    showNotification('Export completed', 'success');
+                })
+                .catch(error => {
+                    console.error('Export error:', error);
+                    showNotification('Export failed', 'error');
+                });
+        }
+
+        function convertToCSV(records) {
+            const headers = ['Car Plate', 'Entry Time', 'Exit Time', 'Due Payment', 'Payment Status'];
+            const csvRows = [headers.join(',')];
+
+            records.forEach(record => {
+                const row = [
+                    record.car_plate,
+                    record.entry_time,
+                    record.exit_time || '',
+                    record.due_payment || '',
+                    record.payment_status ? 'Paid' : 'Unpaid'
+                ];
+                csvRows.push(row.join(','));
+            });
+
+            return csvRows.join('\n');
+        }
+
+        function downloadCSV(csv, filename) {
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('hidden', '');
+            a.setAttribute('href', url);
+            a.setAttribute('download', filename);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg glass-card border-l-4 transform translate-x-full transition-transform duration-300`;
+
+            const colors = {
+                success: 'border-green-400 text-green-400',
+                error: 'border-red-400 text-red-400',
+                warning: 'border-yellow-400 text-yellow-400',
+                info: 'border-cyan-400 text-cyan-400'
+            };
+
+            const icons = {
+                success: 'fas fa-check-circle',
+                error: 'fas fa-exclamation-circle',
+                warning: 'fas fa-exclamation-triangle',
+                info: 'fas fa-info-circle'
+            };
+
+            notification.classList.add(...colors[type].split(' '));
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <i class="${icons[type]}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleTimeString();
+            document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            initCharts();
+            updateTime();
+
+            // Load initial data
+            fetch('/api/stats')
+                .then(response => response.json())
+                .then(stats => updateStats(stats))
+                .catch(error => {
+                    console.error('Error loading initial stats:', error);
+                    showNotification('Failed to load dashboard stats', 'error');
+                });
+
+            updateCharts();
+            loadRecentActivities();
+
+            // Update time every second
+            setInterval(updateTime, 1000);
+
+            // Refresh data every 30 seconds (only for analytics tab)
+            setInterval(() => {
+                if (currentTab === 'analytics') {
+                    updateCharts();
+                    loadRecentActivities();
+                }
+            }, 30000);
+
+            // Add event listeners
+            document.getElementById('records-per-page')?.addEventListener('change', () => {
+                loadParkingRecords(1);
+            });
+
+            document.getElementById('log-lines')?.addEventListener('change', () => {
+                loadLogs();
+            });
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey) {
+                    switch(e.key) {
+                        case '1':
+                            e.preventDefault();
+                            switchTab('analytics');
+                            break;
+                        case '2':
+                            e.preventDefault();
+                            switchTab('records');
+                            break;
+                        case '3':
+                            e.preventDefault();
+                            switchTab('logs');
+                            break;
+                        case '4':
+                            e.preventDefault();
+                            switchTab('search');
+                            break;
+                        case 'r':
+                            e.preventDefault();
+                            location.reload();
+                            break;
+                    }
+                }
+            });
+
+            // Show welcome notification
+            setTimeout(() => {
+                showNotification('Parking Command Center Online', 'success');
+            }, 1000);
+        });
+
+        // Add some Easter eggs for fun
+        let konamiCode = [];
+        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+
+            if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+                showNotification('🚗 Matrix Mode Activated! 🚗', 'success');
+                document.body.style.filter = 'hue-rotate(120deg)';
+                setTimeout(() => {
+                    document.body.style.filter = '';
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
